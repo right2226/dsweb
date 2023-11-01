@@ -1890,3 +1890,510 @@ int peek(struct Node* top)
    }
    return top->data;
 }
+
+2. To implement Linear Queue using arrays(any 2 operations in the code)
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_SIZE 100
+int queue[MAX_SIZE];
+int front = -1;
+int rear = -1;
+void enqueue(int element) {
+  if (rear == MAX_SIZE - 1) {
+    printf("Queue is full.\n");
+    return;
+  }
+  rear++;
+  queue[rear] = element;
+}
+int dequeue() {
+  if (front == rear) {
+    printf("Queue is empty.\n");
+    return -1;
+  }
+  front++;
+  return queue[front];
+}
+int main() {
+  int choice;
+  do {
+    printf("1. Enqueue\n2. Dequeue\n3. Exit\nEnter your choice: ");
+    scanf("%d", &choice);
+    switch (choice) {
+      case 1:
+        int element;
+        printf("Enter element to enqueue: ");
+        scanf("%d", &element);
+        enqueue(element);
+        break;
+      case 2:
+        if (front == rear) {
+          printf("Queue is empty. Cannot dequeue.\n");
+        } else {
+          int dequeuedElement = dequeue();
+          printf("Dequeued element is %d.\n", dequeuedElement);
+        }
+        break;
+      case 3:
+        exit(0);
+        break;
+      default:
+        printf("Invalid choice.\n");
+    }
+  } while (choice != 3);
+  return 0;
+}
+3. To implement Queue using Linked List(any 2 operations in the code)
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Node {
+ int data;
+ struct Node *next;
+} Node;
+struct Queue {
+ Node *front;
+ Node *rear;
+};
+void enqueue(struct Queue *queue, int data) {
+ Node *new_node = (Node *)malloc(sizeof(Node));
+ new_node->data = data;
+ new_node->next = NULL;
+ if (queue->front == NULL) {
+ queue->front = new_node;
+ queue->rear = new_node;
+ } else {
+ queue->rear->next = new_node;
+ queue->rear = new_node;
+ }
+}
+int dequeue(struct Queue *queue) {
+ if (queue->front == NULL) {
+ printf("Queue is empty!\n");
+ return -1;
+ }
+ int data = queue->front->data;
+ Node *temp = queue->front;
+ queue->front = queue->front->next;
+ if (queue->front == NULL) {
+ queue->rear = NULL;
+ }
+ free(temp);
+ return data;
+}
+int main() {
+ struct Queue queue;
+ queue.front = NULL;
+ queue.rear = NULL;
+ int choice, data;
+ while (1) {
+ printf("1. Enqueue\n2. Dequeue\n3. Exit\n");
+ printf("Enter your choice: ");
+ scanf("%d", &choice);
+ switch (choice) {
+ case 1:
+ printf("Enter the data to enqueue: ");
+ scanf("%d", &data);
+ enqueue(&queue, data);
+ break;
+ case 2:
+ data = dequeue(&queue);
+ if (data != -1) {
+ printf("The dequeued element is: %d\n", data);
+ }
+ break;
+ case 3:
+ exit(0);
+ break;
+ default:
+ printf("Invalid choice!\n");
+ }
+ }
+ return 0;
+}
+4. To Implement Circular Linked List and Insert a node at the beginning
+#include<stdio.h>  
+#include<stdlib.h>  
+void beg_insert(int);  
+struct node  
+{  
+    int data;  
+    struct node *next;  
+};  
+struct node *head;  
+void main ()  
+{  
+    int choice,item;  
+    do   
+    {  
+        printf("\nEnter the item which you want to insert?\n");  
+        scanf("%d",&item);  
+        beg_insert(item);  
+        printf("\nPress 0 to insert more ?\n");  
+        scanf("%d",&choice);  
+    }while(choice == 0);  
+}  
+void beg_insert(int item)    
+{    
+        
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));    
+    struct node *temp;  
+    if(ptr == NULL)    
+    {    
+        printf("\nOVERFLOW");    
+    }    
+    else     
+    {    
+        ptr -> data = item;    
+        if(head == NULL)    
+        {    
+            head = ptr;    
+            ptr -> next = head;    
+        }    
+        else     
+        {       
+            temp = head;    
+            while(temp->next != head)    
+                temp = temp->next;    
+            ptr->next = head;     
+            temp -> next = ptr;     
+            head = ptr;    
+        }     
+    printf("\nNode Inserted\n");  
+    }    
+                
+}    
+ 5. To Implement Circular Linked List and insert a node at the end
+void lastinsert(struct node*ptr, struct node *temp, int item)  
+{  
+    ptr = (struct node *)malloc(sizeof(struct node));  
+    if(ptr == NULL)  
+    {  
+        printf("\nOVERFLOW\n");  
+    }  
+    else  
+    {  
+        ptr->data = item;  
+        if(head == NULL)  
+        {  
+            head = ptr;  
+            ptr -> next = head;    
+        }  
+        else  
+        {  
+            temp = head;  
+            while(temp -> next != head)  
+            {  
+                temp = temp -> next;  
+            }  
+            temp -> next = ptr;   
+            ptr -> next = head;  
+        }  
+    }    
+}  
+6. To Implement Circular Linked List and delete a node at the beginning
+#include<stdio.h>  
+#include<stdlib.h>  
+void create(int);  
+void beg_delete();  
+struct node  
+{  
+int data;  
+struct node *next;  
+};  
+struct node *head;  
+void main ()  
+{  
+int choice,item;  
+do   
+{  
+printf("1.Append List\n2.Delete Node from beginning\n3.Exit\n4.Enter your choice?");  
+scanf("%d",&choice);  
+switch(choice)  
+{  
+case 1:  
+printf("\nEnter the item\n");  
+scanf("%d",&item);  
+create(item);  
+break;   
+case 2:  
+beg_delete();  
+break;   
+case 3:  
+exit(0);  
+break;    
+default:  
+printf("\nPlease Enter valid choice\n");  
+}  
+
+}while(choice != 3);  
+}  
+void create(int item)    
+{    
+
+struct node *ptr = (struct node *)malloc(sizeof(struct node));    
+struct node *temp;  
+if(ptr == NULL)    
+{    
+printf("\nOVERFLOW");    
+}    
+else     
+{    
+ptr -> data = item;    
+if(head == NULL)    
+{    
+head = ptr;    
+ptr -> next = head;    
+}    
+else     
+{       
+temp = head;    
+while(temp->next != head)    
+temp = temp->next;    
+ptr->next = head;     
+temp -> next = ptr;     
+head = ptr;    
+}     
+printf("\nNode Inserted\n");  
+}    
+
+}   
+void beg_delete()  
+{  
+struct node *ptr;  
+if(head == NULL)  
+{  
+printf("\nUNDERFLOW\n");      
+}  
+else if(head->next == head)  
+{  
+head = NULL;  
+free(head);  
+printf("\nNode Deleted\n");   
+}  
+
+else  
+{     
+ptr = head;   
+while(ptr -> next != head)  
+ptr = ptr -> next;   
+ptr->next = head->next;  
+free(head);  
+head = ptr->next;  
+printf("\nNode Deleted\n");   
+}  
+}  
+
+7. To Implement Circular Linked List and delete a node at the end
+#include<stdio.h>  
+#include<stdlib.h>  
+void create(int);  
+void last_delete();  
+struct node  
+{  
+int data;  
+struct node *next;  
+};  
+struct node *head;  
+void main ()  
+{  
+int choice,item;  
+do   
+{  
+printf("1.Append List\n2.Delete Node from end\n3.Exit\n4.Enter your choice?");  
+scanf("%d",&choice);  
+switch(choice)  
+{  
+case 1:  
+printf("\nEnter the item\n");  
+scanf("%d",&item);  
+create(item);  
+break;   
+case 2:  
+last_delete();  
+break;   
+case 3:  
+exit(0);  
+break;    
+default:  
+printf("\nPlease Enter valid choice\n");  
+}  
+
+}while(choice != 3);  
+}  
+void create(int item)    
+{    
+
+struct node *ptr = (struct node *)malloc(sizeof(struct node));    
+struct node *temp;  
+if(ptr == NULL)    
+{    
+printf("\nOVERFLOW\n");    
+}    
+else     
+{    
+ptr -> data = item;    
+if(head == NULL)    
+{    
+head = ptr;    
+ptr -> next = head;    
+}    
+else     
+{       
+temp = head;    
+while(temp->next != head)    
+temp = temp->next;    
+ptr->next = head;     
+temp -> next = ptr;     
+head = ptr;    
+}     
+printf("\nNode Inserted\n");  
+}    
+
+}   
+void last_delete()  
+{  
+struct node *ptr, *preptr;    
+if(head==NULL)  
+{  
+printf("\nUNDERFLOW\n");  
+}  
+else if (head ->next == head)  
+{  
+head = NULL;  
+free(head);  
+printf("\nNode Deleted\n");  
+}  
+else   
+{  
+ptr = head;  
+while(ptr ->next != head)  
+{  
+preptr=ptr;  
+ptr = ptr->next;  
+}  
+preptr->next = ptr -> next;  
+free(ptr);  
+printf("\nNode Deleted\n");  
+}  
+}  
+8. To Implement Stack using Linked List for push operation
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+ int data;
+ struct node *next;
+}*head, *temp, *head1;
+void push(int data) {
+ if (head == NULL) {
+ head = (struct node *)malloc(sizeof(struct node));
+ head->data = data;
+ head->next = NULL;
+ }
+ else {
+ //temp is new node to Insert in stack
+ temp = (struct node *)malloc(sizeof(struct node));
+ temp->data = data;
+ temp->next = NULL;
+ // Traverse the list to find the last node.
+ struct node *current = head; 
+ while (current->next != NULL) {
+ current = current->next; 
+ }
+ current->next = temp;
+ }
+ printf("Node is inserted in Stack\n\n");
+}
+void display() {
+ head1 = head;
+ if (head1 == NULL) {
+ printf("Empty\n"); 
+ }
+ else {
+ printf("The Linked List is: ");
+ while (head1 != NULL) {
+ printf("%d-->", head1->data); 
+head1 = head1->next; 
+ }
+ printf("NULL\n");
+ }
+}
+int main() {
+ int choice, value;
+ do {
+ printf("\n1. Push.\n2. Display.\n0. Exit\n"); 
+ printf("Enter your choice: ");
+ scanf("%d", &choice);
+ switch (choice) {
+ case 0: 
+break;
+ case 1:
+ printf("Enter the value to insert: ");
+ scanf("%d", &value);
+ push(value);
+ break;
+ case 2:
+ display();
+ break;
+ default:
+ printf("Wrong choice\n");
+ }
+ } while (choice != 0); 
+ return 0;
+}
+9. To Implement Stack using Linked List for pop operation
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+ int data;
+ struct node *next;
+}*head, *temp, *head1;
+void push(int data) {
+ if (head == NULL) { 
+ //To insert the first node head
+ head = (struct node *)malloc(sizeof(struct node));
+ head->data = data;
+ head->next = NULL;
+ }
+ else {
+temp = (struct node *)malloc(sizeof(struct node));
+ temp->data = data;
+ temp->next = head;
+ head = temp; 
+ }
+ printf("Node is inserted\n\n");
+}
+void display() {
+ head1 = head;
+ if (head1 == NULL) {
+ printf("Empty\n");
+ }
+ else {
+ printf("The Linked List is: ");
+ while (head1 != NULL) {
+ printf("%d-->", head1->data);
+ head1 = head1->next;
+ }
+ printf("NULL\n");
+ }
+}
+int main() {
+ int choice, value;
+ while (1) {
+ printf("\n1. Push.\n2. Display.\n");
+ printf("Enter your choice: ");
+ scanf("%d", &choice);
+ switch (choice) {
+ case 1:
+ printf("Enter the value to insert: ");
+ scanf("%d", &value);
+ push(value);
+ break;
+ case 2:
+ display();
+ break;
+ default:
+ printf("Wrong choice\n");
+ }
+ }
+ return 0;
