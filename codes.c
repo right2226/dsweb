@@ -1,4 +1,4 @@
-1.	To implement Stack using arrays
+//1.	To implement Stack using arrays
 
 
 #include <stdio.h>
@@ -76,7 +76,7 @@ printf("Stack is empty");
 }
 
  
-2.	To implement Circular Queue using arrays
+//2.	To implement Circular Queue using arrays
 
 
 
@@ -166,9 +166,12 @@ case 2: dequeue(); break; case 3: display();
 return 0;
 }
  
-3.	To Implement Single Linked List and insert a node at the front
-#include<stdio.h> #include<stdlib.h> void beginsert(int); struct node
-{
+//3.	To Implement Single Linked List and insert a node at the front
+
+#include<stdio.h> 
+#include<stdlib.h>
+ void beginsert(int); 
+struct node{
 int data;
 struct node *next;
 };
@@ -200,7 +203,9 @@ printf("\nNode inserted\n");
 
 
  
-5.	To Implement Single Linked List and insert a node at the end#include<stdio.h> #include<stdlib.h>
+//5.	To Implement Single Linked List and insert a node at the end
+
+#include<stdio.h> #include<stdlib.h>
 void lastinsert(int); struct node
 {
 int data;
@@ -248,7 +253,8 @@ ptr->next = NULL; printf("\nNode inserted");
 }
 
  
-6.	To Implement Single Linked List and delete a node from the front
+//6.	To Implement Single Linked List and delete a node from the front
+
 #include<stdio.h> #include<stdlib.h> void create(int); void begdelete(); struct node
 {
 int data;
@@ -303,10 +309,13 @@ printf("\n Node deleted from the begining ...");
 } }
 
  
-7.	To Implement Single Linked List and delete a node from the end
-#include<stdio.h> #include<stdlib.h> void create(int); void end_delete(); struct node
-{
-int data;
+//7.	To Implement Single Linked List and delete a node from the end
+
+#include<stdio.h> 
+#include<stdlib.h> 
+void create(int); 
+void end_delete(); struct node
+{int data;
 struct node *next;
 };
 struct node *head;
@@ -372,7 +381,7 @@ printf("\n Deleted Node from the last ...");
 }
 
  
-8.	To Implement Stack using Linked List for push operation
+//8.	To Implement Stack using Linked List for push operation
 
 
 
@@ -463,7 +472,7 @@ printf("%d\n", ptr->val); ptr = ptr->next;
 }
 }
  
-9.	To Implement Stack using Linked List for pop operation
+//9.	To Implement Stack using Linked List for pop operation
 
 
 #include <stdio.h> #include <stdlib.h> void push();
@@ -568,7 +577,8 @@ printf("%d\n",ptr->val); ptr = ptr->next;
 }
 }
  
-10.	To implement Queue using Linked List
+//10.	To implement Queue using Linked List
+
 #include<stdio.h> #include<stdlib.h> struct node
 {
 int data;
@@ -717,6 +727,7 @@ int main() {
 }
 
 //to implemednt queue using linked list
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -814,6 +825,7 @@ int main() {
 
 
 //to implement circular linked list and insert node at beginning
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -964,6 +976,7 @@ int main() {
 //circulaar linked list code all four operations
 
 // Implementing Circular Linked List
+
 #include <stdio.h>
 #include <stdlib.h>
 struct Node
@@ -1301,7 +1314,10 @@ return 0;
 2nd batch 
 
 // Implementing Queue using array
-#include <stdio.h> #include <limits.h> #define MAX 5
+
+#include <stdio.h> 
+#include <limits.h> 
+#define MAX 5
 int arr[MAX]; int front = -1; int rear = -1;
 void menu();
 void enqueue(int); int dequeue(); void display();
@@ -1763,7 +1779,9 @@ return 1; }
 }
 
 //to implement stack using ll for push & pop
+
 // Implementing Stack using Linked List
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
@@ -2062,8 +2080,10 @@ void beg_insert(int item)
     printf("\nNode Inserted\n");  
     }    
                 
-}    
+}   
+ 
  5. To Implement Circular Linked List and insert a node at the end
+
 void lastinsert(struct node*ptr, struct node *temp, int item)  
 {  
     ptr = (struct node *)malloc(sizeof(struct node));  
@@ -2091,7 +2111,9 @@ void lastinsert(struct node*ptr, struct node *temp, int item)
         }  
     }    
 }  
+
 6. To Implement Circular Linked List and delete a node at the beginning
+
 #include<stdio.h>  
 #include<stdlib.h>  
 void create(int);  
@@ -2185,6 +2207,7 @@ printf("\nNode Deleted\n");
 }  
 
 7. To Implement Circular Linked List and delete a node at the end
+
 #include<stdio.h>  
 #include<stdlib.h>  
 void create(int);  
@@ -2341,7 +2364,9 @@ break;
  } while (choice != 0); 
  return 0;
 }
+
 9. To Implement Stack using Linked List for pop operation
+
 #include <stdio.h>
 #include <stdlib.h>
 struct node {
